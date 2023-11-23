@@ -6,10 +6,3 @@ h1.mainHeader {
   background-clip: text !important;
   -webkit-background-clip: text !important;
 }
-
-@media print {
-  #printPageButton {
-    display: none;
-  }
-
-}
