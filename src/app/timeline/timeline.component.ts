@@ -1,30 +1,67 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
-import {DataSet, Timeline} from "vis";
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {DataSet, Timeline, TimelineOptions} from "vis";
+import {DataSharingService} from "../data-sharing.service";
 
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
   styleUrl: './timeline.component.css'
 })
-export class TimelineComponent implements AfterViewInit {
+export class TimelineComponent implements AfterViewInit, OnInit {
   timeline: any;
 
   @ViewChild('timelineContainer') timelineContainer: ElementRef;
 
+  constructor(private dataSharingService: DataSharingService) {
+  }
+
   ngAfterViewInit(): void {
     const container = this.timelineContainer.nativeElement;
+    let items = new DataSet();
+    this.dataSharingService.timelineData$.subscribe((data) => {
+      data.forEach((element) => {
+        if (element.eventStartDate === element.eventEndDate) {
+          items.add({
+            id: element.position,
+            content: element.eventName,
+            start: element.eventStartDate,
+            title: `<p>Name: ${element.eventName}</p>
+                      <p>Start date: ${element.eventStartDate}</p>
+                      <p>End date: ${element.eventEndDate}</p>
+                      <p>Description: ${element.eventDescription}</p>
+                      <p>Image: <img src="${element.eventImageUrl}" alt="image" width="30px" height="30px"></p>
+                      <p>Category: ${element.eventCategory}</p>`
+          })
+        } else {
+          items.add({
+            id: element.position,
+            content: element.eventName,
+            start: element.eventStartDate,
+            end: element.eventEndDate,
+            title: `<p>Name: ${element.eventName}</p>
+                      <p>Start date: ${element.eventStartDate}</p>
+                      <p>End date: ${element.eventEndDate}</p>
+                      <p>Description: ${element.eventDescription}</p>
+                      <p>Image: <img src="${element.eventImageUrl}" alt="image" width="30px" height="30px"></p>
+                      <p>Category: ${element.eventCategory}</p>`
+          })
+        }
+      });
+    });
 
-    const items = new DataSet([
-      {id: 1, content: 'item 1', start: '2014-04-20'},
-      {id: 2, content: 'item 2', start: '2014-04-14'},
-      {id: 3, content: 'item 3', start: '2014-04-18'},
-      {id: 4, content: 'item 4', start: '2014-04-16', end: '2014-04-19'},
-      {id: 5, content: 'item 5', start: '2014-04-25'},
-      {id: 6, content: 'item 6', start: '2014-04-27'}
-    ]);
-
-    const options = {};
+    const options: TimelineOptions = {
+      showTooltips: true,
+      tooltip: {
+        overflowMethod: "flip",
+      },
+      height: '400px',
+    };
 
     this.timeline = new Timeline(container, items, options);
+  }
+
+  ngOnInit(): void {
+    this.dataSharingService.timelineData$.subscribe((data) => {
+    });
   }
 }

@@ -1,11 +1,9 @@
-.mat-sort-header {
-  cursor: pointer;
+table{
+  width: 100%;
 }
 
-.mat-sort-header-arrow {
-  display: none;
-}
-
-.mat-sort-header-sorted .mat-sort-header-arrow {
-  display: inline-block;
+.mat-form-field{
+  font-size: 14px;
+  width: 20%;
+  margin-right: 10px;
 }
