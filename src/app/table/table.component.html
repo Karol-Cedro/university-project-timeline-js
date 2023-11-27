@@ -15,11 +15,11 @@
   &nbsp;&nbsp;&nbsp;
   <button mat-raised-button style="color: #c2c203" (click)="applyFilter()">Apply Date Filter</button>
   &nbsp;&nbsp;&nbsp;
-  <button mat-raised-button style="color: green" (click)="applyFilter()">Add Event</button>
+  <button mat-raised-button style="color: green" (click)="openAddEventDialog()">Add Event</button>
   &nbsp;&nbsp;&nbsp;
-  <button mat-raised-button style="color: blue" (click)="applyFilter()">Update Event</button>
+  <button mat-raised-button style="color: blue" (click)="openUpdateEventDialog()">Update Event</button>
   &nbsp;&nbsp;&nbsp;
-  <button mat-raised-button style="color: red" (click)="applyFilter()">Delete Event</button>
+  <button mat-raised-button style="color: red" (click)="deleteSelected()">Delete Event</button>
 </div>
 
 <div class="mat-elevation-z8">
@@ -54,7 +54,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumn"></tr>
-    <tr mat-row *matRowDef="let row; columns:displayedColumn"></tr>
+    <tr mat-row *matRowDef="let row; columns:displayedColumn; let i = index" (click)=rowSelected(i) [ngClass]="{'highlight': i === selectedRow}"></tr>
   </table>
   <mat-paginator [pageSizeOptions]="[5,10,25,100]" aria-label="select page of events"></mat-paginator>
 </div>

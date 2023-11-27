@@ -17,6 +17,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {DatePipe} from '@angular/common';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { PopUpFormComponent } from './pop-up-form/pop-up-form.component';
+import {MatDialogActions, MatDialogContent} from "@angular/material/dialog";
 
 export const MY_FORMATS = {
   parse: {
@@ -36,7 +38,8 @@ export const MY_FORMATS = {
     AppComponent,
     HeaderComponent,
     TimelineComponent,
-    TableComponent
+    TableComponent,
+    PopUpFormComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,9 @@ export const MY_FORMATS = {
     MatNativeDateModule,
     FormsModule,
     MatButtonModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatDialogContent,
+    MatDialogActions
   ],
   providers: [{provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
     {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},],

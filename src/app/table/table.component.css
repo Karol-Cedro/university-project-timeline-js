@@ -7,3 +7,7 @@ table{
   width: 20%;
   margin-right: 10px;
 }
+
+.highlight {
+  background-color: yellow;
+}

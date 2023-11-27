@@ -1,0 +1,40 @@
+<h2 mat-dialog-title style="text-align: center; padding: 5px">Add New Event</h2>
+<mat-dialog-content>
+  <!-- Your form for adding a new event -->
+  <!-- Example form -->
+  <div style="text-align: center">
+    <mat-form-field>
+      <input matInput placeholder="Event Name" [(ngModel)]="eventName">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Choose a start date</mat-label>
+      <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date" [(ngModel)]="eventStartDate">
+      <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Choose a end date</mat-label>
+      <input matInput [matDatepicker]="endDatePicker" placeholder="End Date" [(ngModel)]="eventEndDate">
+      <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Description" [(ngModel)]="eventDescription">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Image URL" [(ngModel)]="eventImageUrl">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Category" [(ngModel)]="eventCategory">
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onAdd()">Submit</button>
+</mat-dialog-actions>
