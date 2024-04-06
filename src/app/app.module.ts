@@ -19,6 +19,7 @@ import {DatePipe} from '@angular/common';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { PopUpFormComponent } from './pop-up-form/pop-up-form.component';
 import {MatDialogActions, MatDialogContent} from "@angular/material/dialog";
+import { AboutComponent } from './about/about.component';
 
 export const MY_FORMATS = {
   parse: {
@@ -39,7 +40,8 @@ export const MY_FORMATS = {
     HeaderComponent,
     TimelineComponent,
     TableComponent,
-    PopUpFormComponent
+    PopUpFormComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
